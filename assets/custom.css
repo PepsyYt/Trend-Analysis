@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.stApp {
+    font-family: 'Inter', sans-serif !important;
+}
+
+.stButton > button {
+    background-color: #FF385C;
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    border: none;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
+}
+
+.metric-card {
+    background-color: #00A699;
+    color: white;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.property-card {
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
