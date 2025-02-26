@@ -44,17 +44,20 @@
 }
 
 /* Navigation Sidebar */
-section[data-testid="stSidebar"] {
+[data-testid="stSidebar"] {
     background: linear-gradient(180deg, #1e1e2e 0%, #2d2d44 100%);
-    padding: 2rem 1rem;
     border-right: 1px solid rgba(255,255,255,0.1);
 }
 
-section[data-testid="stSidebar"] .element-container {
-    margin-bottom: 1rem;
+[data-testid="stSidebar"] > div {
+    padding: 2rem 1rem;
 }
 
-section[data-testid="stSidebar"] a {
+[data-testid="stSidebarNav"] {
+    padding-top: 1rem;
+}
+
+[data-testid="stSidebarNav"] a {
     font-size: 1.2rem;
     text-transform: capitalize;
     letter-spacing: 0.5px;
@@ -68,11 +71,22 @@ section[data-testid="stSidebar"] a {
     margin-bottom: 0.5rem;
 }
 
-section[data-testid="stSidebar"] a:hover {
+[data-testid="stSidebarNav"] a:hover {
     color: #FF385C !important;
     transform: translateX(5px);
     background: linear-gradient(135deg, rgba(255,56,92,0.2) 0%, rgba(255,56,92,0) 100%);
     text-decoration: none;
+}
+
+/* Sidebar Toggle Button */
+button[kind="secondary"] {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+}
+
+button[kind="secondary"]:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Main content area */
