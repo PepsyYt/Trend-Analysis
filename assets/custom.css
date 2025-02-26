@@ -3,25 +3,32 @@
 /* Base styles */
 .stApp {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, #f6f8ff 0%, #f0f3ff 100%);
-    position: relative;
-    overflow-x: hidden;
 }
 
-.stApp::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(255, 56, 92, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(0, 166, 153, 0.1) 0%, transparent 50%),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23FF385C' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-    z-index: -1;
-    opacity: 0.6;
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #1e1e2e 0%, #2d2d44 100%);
+}
+
+[data-testid="stSidebar"] > div {
+    padding: 2rem 1rem;
+}
+
+[data-testid="stSidebar"] label {
+    color: white !important;
+}
+
+[data-testid="stSidebar"] .st-emotion-cache-1c7m502 {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stSidebar"] .st-emotion-cache-1c7m502:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
 }
 
 /* Signature */
@@ -43,116 +50,6 @@
     transform: translateY(-2px);
 }
 
-/* Navigation Sidebar */
-section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #1e1e2e 0%, #2d2d44 100%);
-    border-right: 1px solid rgba(255,255,255,0.1);
-}
-
-section[data-testid="stSidebar"] > div:first-child {
-    padding: 2rem 1rem;
-}
-
-/* Sidebar Navigation Links */
-section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
-    gap: 0.5rem;
-}
-
-section[data-testid="stSidebar"] [data-testid="stButton"],
-section[data-testid="stSidebar"] a {
-    background: linear-gradient(135deg, rgba(255,56,92,0.1) 0%, rgba(255,56,92,0) 100%);
-    border-radius: 12px;
-    padding: 0.75rem 1rem;
-    color: white !important;
-    text-decoration: none !important;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none !important;
-    margin-bottom: 0.5rem;
-}
-
-section[data-testid="stSidebar"] [data-testid="stButton"]:hover,
-section[data-testid="stSidebar"] a:hover {
-    background: linear-gradient(135deg, rgba(255,56,92,0.2) 0%, rgba(255,56,92,0) 100%);
-    color: #FF385C !important;
-    transform: translateX(5px);
-}
-
-/* Sidebar Toggle Button */
-button[kind="secondary"] {
-    background: transparent !important;
-    border: none !important;
-    color: #ffffff !important;
-}
-
-button[kind="secondary"]:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Feature Cards */
-.feature-card {
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 2rem;
-    box-shadow: 0 8px 32px rgba(31,38,135,0.1);
-    border: 1px solid rgba(255,255,255,0.5);
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(31,38,135,0.15);
-}
-
-/* Metric Cards */
-.metric-card {
-    background: linear-gradient(135deg, #00A699 0%, #008f84 100%);
-    color: white;
-    border-radius: 16px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease-out;
-    box-shadow: 0 8px 32px rgba(0, 166, 153, 0.2);
-}
-
-.metric-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 40px rgba(0, 166, 153, 0.3);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideIn {
-    from { transform: translateX(-20px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-/* Form Inputs */
-div[data-baseweb="input"] {
-    border-radius: 12px !important;
-    border: 2px solid #e0e4f1 !important;
-    transition: all 0.2s ease;
-    background: rgba(255, 255, 255, 0.9) !important;
-}
-
-div[data-baseweb="input"]:focus-within {
-    border-color: #FF385C !important;
-    box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.15);
-    transform: translateY(-2px);
-}
-
 /* Buttons */
 .stButton > button {
     background: linear-gradient(135deg, #FF385C 0%, #ff1f4b 100%) !important;
@@ -161,71 +58,45 @@ div[data-baseweb="input"]:focus-within {
     padding: 0.75rem 1.5rem !important;
     border: none !important;
     font-weight: 600 !important;
-    letter-spacing: 0.5px;
     transition: all 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(255, 56, 92, 0.2);
-    width: 100%;
 }
 
 .stButton > button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 56, 92, 0.3);
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(255, 56, 92, 0.2) !important;
 }
 
-/* Main content area */
-section[data-testid="stContent"] {
-    padding: 3rem;
+/* Form inputs */
+[data-testid="stTextInput"] > div {
+    border-radius: 10px !important;
 }
 
-/* Animated components */
-.animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
-}
-
-.animate-slide-in {
-    animation: slideIn 0.3s ease-out;
-}
-
-.float-animation {
-    animation: float 3s ease-in-out infinite;
-}
-
-/* Headers */
-h1, h2, h3 {
-    color: #1e1e2e;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-}
-
-/* Cards */
-.card {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
-    margin-bottom: 24px;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
-}
-
-.metric-card {
-    background: linear-gradient(135deg, #00A699 0%, #008f84 100%);
-    color: white;
-    border-radius: 16px;
+/* Metrics */
+[data-testid="stMetric"] {
+    background: white;
     padding: 1.5rem;
-    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease-out;
-    box-shadow: 0 8px 32px rgba(0, 166, 153, 0.2);
 }
 
-.metric-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 40px rgba(0, 166, 153, 0.3);
+[data-testid="stMetric"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+[data-testid="stMetricValue"] {
+    color: #FF385C !important;
+}
+
+/* Info boxes */
+.stAlert {
+    border: none !important;
+    border-radius: 15px !important;
+    transition: all 0.3s ease;
+}
+
+.stAlert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
