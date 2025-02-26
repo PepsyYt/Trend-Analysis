@@ -1,36 +1,122 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* Base styles */
 .stApp {
     font-family: 'Inter', sans-serif !important;
+    transition: all 0.3s ease;
 }
 
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Animated components */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Buttons */
 .stButton > button {
     background-color: #FF385C;
     color: white;
     border-radius: 8px;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     border: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Cards */
 .card {
     background-color: white;
     border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     margin-bottom: 24px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .metric-card {
-    background-color: #00A699;
+    background: linear-gradient(135deg, #00A699, #00887d);
     color: white;
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: 12px;
+    padding: 20px;
     text-align: center;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.metric-card:hover {
+    transform: scale(1.02);
 }
 
 .property-card {
     border: 1px solid #E5E5E5;
     border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out;
+    background: white;
+}
+
+.property-card:hover {
+    border-color: #FF385C;
+    box-shadow: 0 4px 12px rgba(255, 56, 92, 0.1);
+}
+
+/* Form inputs */
+.stTextInput > div > div {
+    border-radius: 8px;
+    border: 2px solid #E5E5E5;
+    transition: all 0.2s ease;
+}
+
+.stTextInput > div > div:focus-within {
+    border-color: #FF385C;
+    box-shadow: 0 0 0 2px rgba(255, 56, 92, 0.2);
+}
+
+/* Navigation */
+.stSelectbox > div > div {
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* Loading animation */
+.stSpinner {
+    border-color: #FF385C;
+}
+
+/* Charts */
+.js-plotly-plot {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Alerts and messages */
+.stAlert {
+    border-radius: 8px;
+    animation: slideIn 0.3s ease-out;
 }
