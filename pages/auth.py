@@ -25,15 +25,22 @@ def login_page():
             submit = st.form_submit_button("Login", use_container_width=True)
 
             if submit:
+                if not email or not password:
+                    st.error("Please fill in all fields")
+                    return
+
                 with st.spinner("Logging in..."):
-                    user = User.get_by_email(email)
-                    if user and user.verify_password(password):
-                        st.session_state.user = user
-                        st.session_state.is_authenticated = True
-                        st.success("Successfully logged in!")
-                        st.rerun()
-                    else:
-                        st.error("Invalid email or password")
+                    try:
+                        user = User.get_by_email(email)
+                        if user and user.verify_password(password):
+                            st.session_state.user = user
+                            st.session_state.is_authenticated = True
+                            st.success("Successfully logged in!")
+                            st.rerun()
+                        else:
+                            st.error("Invalid email or password")
+                    except Exception as e:
+                        st.error(f"An error occurred: {str(e)}")
 
         st.markdown('</div>', unsafe_allow_html=True)
 
@@ -81,6 +88,10 @@ def signup_page():
                     st.error("Please agree to the Terms of Service and Privacy Policy")
                     return
 
+                if not full_name or not email or not password:
+                    st.error("Please fill in all required fields")
+                    return
+
                 if password != password_confirm:
                     st.error("Passwords don't match")
                     return
@@ -94,6 +105,16 @@ def signup_page():
                         user = User.create(email=email, password=password, full_name=full_name)
                         st.success("Account created successfully! Please login.")
                         st.session_state.require_login = True
+                        # Redirect to login page after 2 seconds
+                        st.script("""
+                            <script>
+                            setTimeout(function(){
+                                window.location.href = '/';
+                            }, 2000);
+                            </script>
+                        """, unsafe_allow_html=True)
+                    except ValueError as e:
+                        st.error(str(e))
                     except Exception as e:
                         st.error(f"Error creating account: {str(e)}")
 
@@ -103,10 +124,7 @@ def signup_page():
     <div style="text-align: center; margin-top: 2rem;" class="animate-fade-in">
         <p style="font-size: 1.1rem;">Already have an account? <a href="/" target="_self" style="color: #FF385C; font-weight: 600;">Login</a></p>
     </div>
-    """, unsafe_allow_html=True)
 
-    # Add signature
-    st.markdown("""
     <div class="signature">
         Designed with 💖 by epsyy pepsy
     </div>
