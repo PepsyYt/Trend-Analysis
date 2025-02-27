@@ -87,7 +87,7 @@ def login_page():
                             st.session_state.user = user
                             st.session_state.is_authenticated = True
                             st.success("Successfully logged in!")
-                            st.experimental_rerun()
+                            st.rerun()
                         else:
                             st.error("Invalid email or password")
                     except Exception as e:
@@ -102,8 +102,8 @@ def login_page():
 
 def signup_page():
     if st.session_state.get('is_authenticated', False):
-        st.experimental_set_query_params(page="")
-        st.experimental_rerun()
+        st.query_params.clear()
+        st.rerun()
         return
 
     st.markdown("""
@@ -144,8 +144,8 @@ def signup_page():
                     try:
                         user = User.create(email=email, password=password, full_name=full_name)
                         st.success("Account created successfully! Please login.")
-                        st.experimental_set_query_params(page="")
-                        st.experimental_rerun()
+                        st.query_params.clear()
+                        st.rerun()
                     except ValueError as e:
                         st.error(str(e))
                     except Exception as e:

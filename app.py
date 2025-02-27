@@ -95,6 +95,11 @@ def load_css():
         a:hover {
             text-decoration: underline !important;
         }
+
+        /* Hide Streamlit branding */
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
         </style>
     """, unsafe_allow_html=True)
 
@@ -123,7 +128,7 @@ def show_dashboard():
         if st.button("🚪 Logout", use_container_width=True):
             st.session_state.is_authenticated = False
             st.session_state.user = None
-            st.experimental_rerun()
+            st.rerun()
 
     # Main content based on selection
     if "Dashboard" in selected:
@@ -200,15 +205,7 @@ def main():
     init_auth()
     load_css()
 
-    # Force dark theme
-    st.markdown("""
-        <script>
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.body.setAttribute('data-auth', 'true');
-        </script>
-    """, unsafe_allow_html=True)
-
-    # Hide auth pages when logged in
+    # Check if the user is trying to access auth pages while logged in
     if st.session_state.is_authenticated:
         show_dashboard()
     else:
