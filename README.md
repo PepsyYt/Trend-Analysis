@@ -8,42 +8,38 @@ An advanced Airbnb market analysis tool built with Streamlit, providing comprehe
 - 📈 ROI Calculator
 - 🔐 User Authentication
 
-## Setup Instructions
+## Quick Start Guide
 
-1. Fork this project to your Replit account:
-   - Click on "Fork" or "Create a New Repl"
-   - Choose "Import from GitHub" if available
+### 1. Fork this Project
+1. Click on "Fork Repl" button in Replit
+2. The project will be copied to your account automatically
+3. All dependencies will be installed automatically
 
-2. Dependencies
-   The project will automatically install required packages:
-   - streamlit
-   - pandas
-   - plotly
-   - numpy
-   - psycopg2-binary
-   - werkzeug
+### 2. Database Setup
+The database will be automatically created when you fork the project. No manual setup needed!
 
-3. Database Setup
-   - The project requires a PostgreSQL database
-   - Replit will automatically create one for you
-   - Required environment variables will be set automatically:
-     - DATABASE_URL
-     - PGHOST
-     - PGPORT
-     - PGUSER
-     - PGPASSWORD
-     - PGDATABASE
+### 3. Run the Project
+1. Click the "Run" button in Replit
+2. The application will start automatically
+3. Access the app through your Replit URL
 
-4. Run the Project
-   - Click the "Run" button in Replit
-   - The application will start on port 5000
+## Tech Stack
+- Streamlit web framework
+- PostgreSQL database
+- Plotly for data visualization
+- Pandas for data processing
+- Custom styling with CSS
 
-## Deployment
-The project is ready to deploy on Replit:
-1. Fork the project
-2. Let Replit install dependencies
-3. Click "Run"
-4. Access via your Replit URL
+## Using the App
+1. Create an account using the Sign Up page
+2. Log in with your credentials
+3. Explore market analysis, price comparisons, and ROI calculations
+
+## Support
+If you encounter any issues:
+1. Make sure all dependencies are installed
+2. Check if the database is properly connected
+3. Contact Replit support for platform-specific issues
 
 ## Credits
 Designed with 💖 by epsyy pepsy
