@@ -65,7 +65,7 @@ def main():
     st.subheader("Platform Analysis")
 
     # Create columns for platforms
-    cols = st.columns(4)
+    cols = st.columns(3)
     platforms = df.groupby('platform').agg({
         'price': ['mean', 'min', 'max'],
         'rating': 'mean',
@@ -73,15 +73,15 @@ def main():
     }).round(2)
 
     for idx, platform in enumerate(platforms.index):
-        with cols[idx % 4]:
+        with cols[idx % 3]:
             st.markdown(f"""
-            <div class="platform-card" style="padding: 1rem; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 1rem;">
-                <h3 style="color: #FF385C;">{platform}</h3>
-                <p><strong>Avg Price:</strong> ₹{platforms.loc[platform, ('price', 'mean')]:,.2f}</p>
-                <p><strong>Price Range:</strong><br/>
+            <div style="background-color: #1F2937; padding: 1rem; border-radius: 10px; border: 1px solid #374151; margin-bottom: 1rem;">
+                <h3 style="color: #FF385C; margin-bottom: 0.5rem;">{platform}</h3>
+                <p style="color: #E5E7EB;"><strong>Avg Price:</strong> ₹{platforms.loc[platform, ('price', 'mean')]:,.2f}</p>
+                <p style="color: #E5E7EB;"><strong>Price Range:</strong><br/>
                    ₹{platforms.loc[platform, ('price', 'min')]:,.2f} - ₹{platforms.loc[platform, ('price', 'max')]:,.2f}</p>
-                <p><strong>Rating:</strong> {platforms.loc[platform, ('rating', 'mean')]:.1f} ⭐</p>
-                <p><strong>Reviews:</strong> {platforms.loc[platform, ('reviews', 'sum'):,}</p>
+                <p style="color: #E5E7EB;"><strong>Rating:</strong> {platforms.loc[platform, ('rating', 'mean')]:.1f} ⭐</p>
+                <p style="color: #E5E7EB;"><strong>Reviews:</strong> {platforms.loc[platform, ('reviews', 'sum')]:,}</p>
             </div>
             """, unsafe_allow_html=True)
 
