@@ -18,55 +18,85 @@ st.set_page_config(
 )
 
 def load_css():
-    # Add dark mode styles
+    # Dark mode styles
     st.markdown("""
         <style>
-        /* Dark mode styles */
+        /* Base dark theme */
         .stApp {
             background-color: #0E1117;
-            color: #FAFAFA;
+            color: #E5E7EB;
         }
 
-        .feature-card {
+        /* Sidebar */
+        section[data-testid="stSidebar"] {
             background-color: #1F2937;
-            border-radius: 10px;
-            padding: 1.5rem;
-            border: 1px solid #374151;
-            margin-bottom: 1rem;
+            border-right: 1px solid #374151;
         }
 
-        .feature-card h3 {
-            color: #FF385C;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: #D1D5DB;
-        }
-
-        .platform-card {
+        /* Cards and containers */
+        .feature-card, .platform-card, div[data-testid="stExpander"] {
             background-color: #1F2937 !important;
             border: 1px solid #374151 !important;
-            color: #D1D5DB !important;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            color: #E5E7EB !important;
+        }
+
+        /* Headers */
+        h1, h2, h3, h4, h5, h6 {
+            color: #F3F4F6 !important;
+        }
+
+        /* Text */
+        p, label, div {
+            color: #E5E7EB !important;
+        }
+
+        /* Metrics */
+        [data-testid="stMetricValue"] {
+            color: #FF385C !important;
+            font-weight: bold !important;
+        }
+
+        [data-testid="stMetricDelta"] {
+            color: #10B981 !important;
+        }
+
+        /* Buttons */
+        button[kind="primary"] {
+            background-color: #FF385C !important;
+            color: white !important;
+        }
+
+        button[kind="secondary"] {
+            border-color: #374151 !important;
+            color: #E5E7EB !important;
+        }
+
+        /* Inputs */
+        input, textarea, select {
+            background-color: #374151 !important;
+            color: #E5E7EB !important;
+            border: 1px solid #4B5563 !important;
         }
 
         /* Hide auth pages when logged in */
-        .auth-page {
-            display: none;
+        body[data-auth="true"] .auth-page {
+            display: none !important;
         }
 
-        /* Custom styling for metrics */
-        [data-testid="stMetricValue"] {
+        /* Links */
+        a {
             color: #FF385C !important;
+            text-decoration: none !important;
+        }
+
+        a:hover {
+            text-decoration: underline !important;
         }
         </style>
     """, unsafe_allow_html=True)
-
-    try:
-        with open("assets/custom.css") as f:
-            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-    except:
-        pass
 
 @auth_required
 def show_dashboard():
@@ -93,17 +123,7 @@ def show_dashboard():
         if st.button("🚪 Logout", use_container_width=True):
             st.session_state.is_authenticated = False
             st.session_state.user = None
-            st.rerun()
-
-    # Hide Streamlit's default menu and auth pages when logged in
-    hide_menu = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    button[data-testid="baseButton-header"] {visibility: hidden;}
-    div[data-testid="stDecoration"] {visibility: hidden;}
-    </style>
-    """
-    st.markdown(hide_menu, unsafe_allow_html=True)
+            st.experimental_rerun()
 
     # Main content based on selection
     if "Dashboard" in selected:
@@ -135,7 +155,7 @@ def show_main_dashboard():
     with col4:
         st.metric("Total Properties", "156", delta="↑ 12")
 
-    # Feature cards with enhanced styling for dark mode
+    # Feature cards
     st.markdown("""
     <div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 2rem;'>
         <div class='feature-card'>
@@ -165,17 +185,14 @@ def show_settings():
         st.form_submit_button("Update Profile")
 
 def show_market_analysis():
-    st.title("Market Analysis")
     from pages.market_analysis import main
     main()
 
 def show_price_comparison():
-    st.title("Price Comparison")
     from pages.price_comparison import main
     main()
 
 def show_roi_calculator():
-    st.title("ROI Calculator")
     from pages.roi_calculator import main
     main()
 
@@ -183,11 +200,16 @@ def main():
     init_auth()
     load_css()
 
-    # Check if the user is trying to access auth pages while logged in
+    # Force dark theme
+    st.markdown("""
+        <script>
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.body.setAttribute('data-auth', 'true');
+        </script>
+    """, unsafe_allow_html=True)
+
+    # Hide auth pages when logged in
     if st.session_state.is_authenticated:
-        current_page = st.experimental_get_query_params().get("page", [""])[0]
-        if current_page in ["Signup", "Login"]:
-            st.experimental_set_query_params(page="")
         show_dashboard()
     else:
         login_page()

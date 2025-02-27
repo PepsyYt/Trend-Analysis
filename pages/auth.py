@@ -10,25 +10,51 @@ def login_page():
         padding: 2rem;
         border-radius: 10px;
         border: 1px solid #374151;
-        color: #D1D5DB;
+        margin: 2rem auto;
+        max-width: 800px;
     }
+
     .auth-title {
-        color: #FF385C;
+        color: #F3F4F6;
         font-size: 2.5rem;
         text-align: center;
         margin-bottom: 2rem;
     }
+
     .auth-subtitle {
-        color: #9CA3AF;
+        color: #E5E7EB;
         text-align: center;
         font-size: 1.2rem;
         margin-bottom: 2rem;
     }
+
+    /* Form styling */
+    [data-testid="stForm"] {
+        background-color: #1F2937;
+        padding: 2rem;
+        border-radius: 10px;
+        border: 1px solid #374151;
+    }
+
+    /* Input fields */
+    [data-testid="stTextInput"] input {
+        background-color: #374151;
+        color: #E5E7EB;
+        border: 1px solid #4B5563;
+    }
+
+    /* Submit button */
+    [data-testid="stFormSubmitButton"] button {
+        background-color: #FF385C;
+        color: white;
+    }
+
     .auth-link {
-        color: #FF385C !important;
+        color: #FF385C;
         text-decoration: none;
         font-weight: 600;
     }
+
     .auth-link:hover {
         text-decoration: underline;
     }
@@ -61,7 +87,7 @@ def login_page():
                             st.session_state.user = user
                             st.session_state.is_authenticated = True
                             st.success("Successfully logged in!")
-                            st.rerun()
+                            st.experimental_rerun()
                         else:
                             st.error("Invalid email or password")
                     except Exception as e:
@@ -70,14 +96,14 @@ def login_page():
     if not st.session_state.get('is_authenticated', False):
         st.markdown("""
         <div style="text-align: center; margin-top: 2rem;">
-            <p style="color: #D1D5DB;">Don't have an account? <a href="?page=Signup" class="auth-link">Sign Up</a></p>
+            <p style="color: #E5E7EB;">Don't have an account? <a href="?page=Signup" class="auth-link">Sign Up</a></p>
         </div>
         """, unsafe_allow_html=True)
 
 def signup_page():
     if st.session_state.get('is_authenticated', False):
         st.experimental_set_query_params(page="")
-        st.rerun()
+        st.experimental_rerun()
         return
 
     st.markdown("""
@@ -119,7 +145,7 @@ def signup_page():
                         user = User.create(email=email, password=password, full_name=full_name)
                         st.success("Account created successfully! Please login.")
                         st.experimental_set_query_params(page="")
-                        st.rerun()
+                        st.experimental_rerun()
                     except ValueError as e:
                         st.error(str(e))
                     except Exception as e:
@@ -128,7 +154,7 @@ def signup_page():
     if not st.session_state.get('is_authenticated', False):
         st.markdown("""
         <div style="text-align: center; margin-top: 2rem;">
-            <p style="color: #D1D5DB;">Already have an account? <a href="?page=" class="auth-link">Login</a></p>
+            <p style="color: #E5E7EB;">Already have an account? <a href="?page=" class="auth-link">Login</a></p>
         </div>
         """, unsafe_allow_html=True)
 
