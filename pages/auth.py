@@ -46,7 +46,7 @@ def login_page():
 
     st.markdown("""
     <div style="text-align: center; margin-top: 2rem;" class="animate-fade-in">
-        <p style="font-size: 1.1rem;">Don't have an account? <a href="/signup" target="_self" style="color: #FF385C; font-weight: 600;">Sign Up</a></p>
+        <p style="font-size: 1.1rem;">Don't have an account? <a href="1_signup" target="_self" style="color: #FF385C; font-weight: 600;">Sign Up</a></p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -124,7 +124,7 @@ def signup_page():
     <div style="text-align: center; margin-top: 2rem;" class="animate-fade-in">
         <p style="font-size: 1.1rem;">Already have an account? <a href="/" target="_self" style="color: #FF385C; font-weight: 600;">Login</a></p>
     </div>
-
+    
     <div class="signature">
         Designed with 💖 by epsyy pepsy
     </div>
